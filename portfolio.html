@@ -1,0 +1,161 @@
+<head>
+  <title>portfolio</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body>
+  {{> layout}}
+</body>
+
+<template name="layout">
+  <main>
+    {{> hero}}
+    {{> about}}
+    {{> work}}
+    <!-- {{> skills}} -->
+    {{> quoteCard text="Do what you love, love what you do"}}
+    {{> contact}}
+  </main>
+</template>
+
+<template name="hero">
+  <section id="hero" class="fixed-bg valign-wrapper">
+  <!-- <section id="hero" class="parallax-container valign-wrapper"> -->
+    <!-- <div class="parallax">
+      <img src="/images/md-background-1.jpg" alt="">
+    </div> -->
+    <div class="row container animated fadeInUp wow">
+      <div class="center-align">
+        <div class="img-wrapper profile">
+          <img src="/images/profile.jpg" alt="" class="desaturate">
+        </div>
+        <h1 class="blue-text text-shadow">Zachary Dixon</h1>
+        <h4 class="blue-text text-lighten-2 text-shadow">Web Developer - Husband - Gamer</h4>
+        <a href="#about" class="waves-effect blue btn btn-action" data-scroll>Learn More</a>
+      </div>
+    </div>
+  </section>
+</template>
+
+<template name="about">
+  <section id="about" class="grey darken-4 valign-wrapper">
+    <div class="row container">
+      <div class="col m6 s12 left-align animated fadeInLeft wow" data-wow-delay="200ms">
+        <h2 class="white-text">
+          My name is 
+          <span class="blue-text">Zachary Dixon </span>
+        </h2>
+        <h5 class="white-text">
+          and I'm a 
+          <span class="blue-text text-lighten-2">Web Developer.</span>
+        </h5>
+        <a href="#work" class="waves-effect blue btn btn-action" data-scroll>See my work</a>
+      </div>
+      <div class="col m6 s12 animated fadeInRight wow" data-wow-delay="200ms">
+        <div class="card grey darken-3 z-depth-2">
+          <div class="card-content">
+            <p class="flow-text white-text">I have a passion for front end application and web development. I'm constantly looking at new shiny technologies and love to see what people think of.</p>
+            <br>
+            <p class="flow-text white-text">I'm a strong believer in the "do what you love, love what you do" philosophy. Life is too short, so just go for it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<template name="work">
+  <section id="work" class="fixed-bg valign-wrapper">
+    <!-- <div class="parallax">
+      <img src="/images/md-background-2.jpg" alt="">
+    </div> -->
+    <div class="container">
+      <div class="row">
+        {{#each projects}}
+          <div class="col m6 s12 animated fadeInLeft wow">
+            {{> project}}
+          </div>
+        {{/each}}
+      </div>
+      <div class="row center-align">
+        <a href="#contact" class="waves-effect blue btn btn-action" data-scroll>Contact Me</a>
+      </div>
+    </div>
+  </section>
+</template>
+
+<template name="project">
+  <div class="card z-depth-1">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="{{imgSrc}}">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">{{title}} <i class="mdi-navigation-more-vert right"></i></span>
+      {{#if hasLink}}<p><a href="{{url}}" class="blue-text" target="_blank">{{link}}</a></p>{{/if}}
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">{{title}} <i class="mdi-navigation-close right"></i></span>
+      <p>{{description}}</p>
+      <p><strong>Technologies Used:</strong></p>
+      <ul class="skills">
+        {{#each skills}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+      {{#if hasLink}}<p><a href="{{url}}" class="blue-text" target="_blank">{{link}}</a></p>{{/if}}
+
+    </div>
+  </div>
+</template>
+
+<template name="skills">
+  <section id="skills" class="white">
+    <div class="row container">
+      
+    </div>
+  </section>
+</template>
+
+<template name="contact">
+  <section id="contact" class="fixed-bg valign-wrapper">
+    <!-- <div class="parallax">
+      <img src="/images/md-background-3.png" alt="">
+    </div> -->
+    <div class="row container">
+      <form id="form-contact" class="col offset-m6 m6 s12 card z-depth-1 animated wow fadeInRight">
+        <h2 class="blue-text">Contact Me</h2>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="mdi-action-account-circle prefix"></i>
+            <input id="contact-name" type="text" class="validate" name="name" required>
+            <label for="contact-name">Name</label>
+          </div>
+          <div class="input-field col s12">
+            <i class="mdi-communication-email prefix"></i>
+            <input id="contact-email" type="email" class="validate" name="email" required>
+            <label for="contact-email">Email</label>
+          </div>
+          <div class="input-field col s12">
+            <i class="mdi-communication-message prefix"></i>
+            <textarea id="contact-message" class="materialize-textarea" name="message" required></textarea>
+            <label for="contact-message">Message</label>
+          </div>
+          <div class="col s12 right-align">
+            <button type="submit" class="waves-effect waves-light blue btn btn-submit-contact">Send Message <i class="mdi-content-send right"></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</template>
+
+<template name="quoteCard">
+  <div class="row container quote-card-container animated fadeInLeft wow">
+    <div class="s12">
+      <div class="card grey darken-4 z-depth-2 quote-card">
+        <h3 class="flow-text blue-text center-align">"{{text}}"</h3>
+      </div>
+    </div>
+  </div>
+</template>
