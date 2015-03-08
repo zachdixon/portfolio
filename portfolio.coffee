@@ -27,5 +27,24 @@ if Meteor.isClient
   Template.work.helpers
     projects: projects
 
+  Template.contact.events
+    'submit #form-contact': (e, doc) ->
+      e.preventDefault()
+      name = doc.find('#contact-name').value
+      subject = "Portfolio: from #{name}"
+      from = doc.find('#contact-email').value
+      message = doc.find('#contact-message').value
+      Meteor.call 'sendEmail', undefined, from, subject, message
+
+
 if Meteor.isServer
+  Meteor.methods sendEmail: (to, from, subject, text) ->
+    unless to then to = ""
+    check [ to, from, subject, text ], [ String ]
+    @unblock()
+    Email.send
+      to: to
+      from: from
+      subject: subject
+      text: text
   Meteor.startup ->
