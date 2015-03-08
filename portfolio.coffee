@@ -39,7 +39,7 @@ if Meteor.isClient
 
 if Meteor.isServer
   Meteor.methods sendEmail: (to, from, subject, text) ->
-    unless to then to = ""
+    unless to then to = "rissk13@gmail.com"
     check [ to, from, subject, text ], [ String ]
     @unblock()
     Email.send
