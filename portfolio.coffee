@@ -34,7 +34,10 @@ if Meteor.isClient
       subject = "Portfolio: from #{name}"
       from = doc.find('#contact-email').value
       message = doc.find('#contact-message').value
-      Meteor.call 'sendEmail', undefined, from, subject, message
+      Meteor.call 'sendEmail', undefined, from, subject, message, (error, result) ->
+        $(doc.find('.input-row')).fadeOut 'fast', ->
+          @.remove()
+          $(doc.find('.feedback-text')).fadeIn()
 
 
 if Meteor.isServer
